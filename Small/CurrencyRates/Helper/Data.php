@@ -15,12 +15,35 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     const CURRENCY_FROM = 'currency_from';
     const CURRENCY_TO = 'currency_to';
 
+    /**
+     * @var CurrencyRateFactory
+     */
     private $currencyRateFactory;
+    /**
+     * @var CurrencyRateRepositoryInterface
+     */
     private $currencyRateRepository;
+    /**
+     * @var SearchCriteriaBuilder
+     */
     private $searchCriteriaBuilder;
+    /**
+     * @var FilterBuilder
+     */
     private $filterBuilder;
+    /**
+     * @var Logger
+     */
     private $logger;
 
+    /**
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param FilterBuilder $filterBuilder
+     * @param CurrencyRateRepositoryInterface $repository
+     * @param CurrencyRateFactory $currencyRateFactory
+     * @param Logger $logger
+     * @param Context $context
+     */
     public function __construct(
         SearchCriteriaBuilder $searchCriteriaBuilder,
         FilterBuilder $filterBuilder,
@@ -38,6 +61,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         parent::__construct($context);
     }
 
+    /**
+     * @param string $currency
+     * @param string $baseCurrency
+     * @return mixed|null
+     */
     public function getFirstPriceRate(string $currency, string $baseCurrency = self::BASE_CURRENCY)
     {
         $result = null;
@@ -51,7 +79,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         try {
             $result = $this->currencyRateRepository->getList($searchCriteria);
         } catch (LocalizedException $e) {
-            $this->logger->debug((string)$e)
+            $this->logger->debug((string)$e);
         }
 
         $items = $result->getItems();
@@ -62,6 +90,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $result;
     }
 
+    /**
+     * @param string $currency
+     * @param string $baseCurrency
+     * @return mixed|null
+     */
     public function getSecondPriceRate(string $currency, string $baseCurrency = self::BASE_CURRENCY)
     {
         $result = null;
