@@ -14,7 +14,7 @@ class ExpmplePlugin
      */
     public function afterGetName(\Magento\Catalog\Model\Product $subject, $result)
     {
-        $title = $result.' '.'!!! ';
+        $title = $result;
         return $title;
     }
 
