@@ -36,8 +36,8 @@
         <settings>
             <sticky>true</sticky>
         </settings>
-        <bookmark name="bookmarks"/>
-        <columnControls name="columns_controls"/>
+<!--        <bookmark name="bookmarks"/>-->
+<!--        <columnsControls name="columns_controls"/>-->
         <filters name="listing_filters">
             <filterSelect name="post_id" provider="${ $.parentName }">
                 <settings>
