@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace Small\Sample\Model;
 
-class Post extends \Magento\Framework\Model\AbstractModel implements \Magento\Framework\DataObject\IdentityInterface
+use Magento\Framework\DataObject\IdentityInterface;
+use Magento\Framework\Model\AbstractModel;
+
+class Post extends AbstractModel implements IdentityInterface
 {
     const CACHE_TAG = 'custom_post';
 
