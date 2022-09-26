@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Small\CurrencyRates\Api;
 
 /**
@@ -7,11 +9,11 @@ namespace Small\CurrencyRates\Api;
 interface CurrencyRateRepositoryInterface
 {
     /**
-     * @param Data\CurrencyRateInterface $currencyRate
+     * @param CurrencyRateInterface $currencyRate
      * @return mixed
      */
     public function save(
-        \Small\CurrencyRates\Api\Data\CurrencyRateInterface $currencyRate);
+        CurrencyRateInterface $currencyRate);
 
     /**
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria

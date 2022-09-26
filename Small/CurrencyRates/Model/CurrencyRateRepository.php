@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Small\CurrencyRates\Model;
 
@@ -81,7 +82,7 @@ class CurrencyRateRepository implements CurrencyRateRepositoryInterface
      * @return CurrencyRateInterface
      * @throws CouldNotSaveException
      */
-    public function save(CurrencyRateInterface $currencyRate)
+    public function save(CurrencyRateInterface|\Small\CurrencyRates\Api\CurrencyRateInterface $currencyRate)
     {
         try{
             $this->resource->save($currencyRate);
@@ -113,7 +114,7 @@ class CurrencyRateRepository implements CurrencyRateRepositoryInterface
      * @param Collection $collection
      * @return void
      */
-    public function addFiltersToCollection(SearchCriteriaInterface $searchCriteria, Collection $collection)
+    public function addFiltersToCollection(SearchCriteriaInterface $searchCriteria, Collection $collection): void
     {
         foreach ($searchCriteria->getFilterGroups() as $filterGroup){
             $fields = $conditions = [];

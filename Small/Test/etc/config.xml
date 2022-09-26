@@ -4,7 +4,7 @@
     <default>
         <web>
             <default>
-                <test_two>No</test_two>
+                <test_two>0</test_two>
             </default>
         </web>
     </default>

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Small\Sample\Model;
 
@@ -10,17 +11,26 @@ class Post extends \Magento\Framework\Model\AbstractModel implements \Magento\Fr
 
     protected $_eventPrefix = 'custom_post';
 
+    /**
+     * @return void
+     */
     protected function _construct()
     {
         $this->_init('\Small\Sample\Model\ResourceModel\Post');
     }
 
-    public function getIdentities()
+    /**
+     * @return string[]
+     */
+    public function getIdentities(): array
     {
         return [self::CACHE_TAG.'_'.$this->getId()];
     }
 
-    public function getDefaultValues()
+    /**
+     * @return array
+     */
+    public function getDefaultValues(): array
     {
         $values = [];
 

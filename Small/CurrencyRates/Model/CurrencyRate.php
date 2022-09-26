@@ -1,10 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace Small\Rates\Model;
 
 use Magento\Framework\Api\DataObjectHelper;
+use Magento\Framework\Data\Collection\AbstractDb;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\Context;
+use Magento\Framework\Registry;
 use Magento\Tests\NamingConvention\true\mixed;
 use Magento\Tests\NamingConvention\true\string;
 use Small\CurrencyRates\Api\Data\CurrencyRateInterface;
@@ -15,20 +18,20 @@ class CurrencyRate extends AbstractModel implements CurrencyRateInterface
     /**
      * @var CurrencyRateInterfaceFactory
      */
-    protected $currencyRateFactory;
+    private CurrencyRateInterfaceFactory $currencyRateFactory;
 
     /**
      * @var DataObjectHelper
      */
-    protected $dataObjectHelper;
+    private DataObjectHelper $dataObjectHelper;
 
     /**
      * @param Context $context
-     * @param \Magento\Framework\Registry $registry
-     * @param CurrencyRateInterfaceFactory $currencyRateFactory
+     * @param Registry $registry
+     * @param CurrencRateInterfaceFactory $currencyRateFactory
      * @param DataObjectHelper $dataObjectHelper
      * @param ResourceModel\CurrencyRate|null $resource
-     * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
+     * @param AbstractDb|null $resourceCollection
      * @param array $data
      */
     public function __construct(
@@ -38,17 +41,19 @@ class CurrencyRate extends AbstractModel implements CurrencyRateInterface
         DataObjectHelper                              $dataObjectHelper,
         ResourceModel\CurrencyRate                    $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
-        array                                         $data =[])
+        array                                         $data =[]
+    )
     {
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
         $this->dataObjectHelper =$dataObjectHelper;
         $this->currencyRateFactory = $currencyRateFactory;
-        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
     }
 
     /**
-     * @return mixed
+     * @param $currencyRateDataObject
+     * @return void
      */
-    public function getDataModel()
+    public function getDataModel($currencyRateDataObject): void
     {
         $currencyRateData = $this->getData();
 
@@ -78,7 +83,7 @@ class CurrencyRate extends AbstractModel implements CurrencyRateInterface
 
     /**
      * @param string $currency
-     * @return mixed|CurrencyRate
+     * @return CurrencyRate
      */
     public function setCurrencyFrom(string $currency)
     {
@@ -95,7 +100,7 @@ class CurrencyRate extends AbstractModel implements CurrencyRateInterface
 
     /**
      * @param string $currency
-     * @return mixed|CurrencyRate
+     * @return CurrencyRate
      */
     public function setCurrencyTo(string $currency)
     {
@@ -112,7 +117,7 @@ class CurrencyRate extends AbstractModel implements CurrencyRateInterface
 
     /**
      * @param string $currency
-     * @return mixed|CurrencyRate
+     * @return CurrencyRate
      */
     public function setCostPriceCurrencyRate(string $currency)
     {
@@ -129,7 +134,7 @@ class CurrencyRate extends AbstractModel implements CurrencyRateInterface
 
     /**
      * @param string $currency
-     * @return mixed|CurrencyRate
+     * @return CurrencyRate
      */
     public function setPriceMatrixCurrencyRate(string $currency)
     {

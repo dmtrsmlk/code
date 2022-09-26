@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Small\Test\Observer;
 
@@ -23,6 +24,8 @@ class LogData implements ObserverInterface
      */
     public function execute(Observer $observer)
     {
-        $this->logger->info('Somebody added product to cart');
+        //TODO: Observer getProduct()
+        $item =$observer->getProduct()->getName();
+        $this->logger->info("Somebody added $item to cart");
     }
 }

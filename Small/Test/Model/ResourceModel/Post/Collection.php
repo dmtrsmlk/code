@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Small\Test\Model\ResourceModel\Post;
+
+use Small\Test\Model\ResourceModel\Post;
 
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
@@ -15,6 +18,6 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
      */
     protected function _construct()
     {
-        $this->_init('Small\Test\Model\Post', 'Small\Test\Model\ResourceModel\Post');
+        $this->_init('Small\Test\Model\Post', Post::class);
     }
 }

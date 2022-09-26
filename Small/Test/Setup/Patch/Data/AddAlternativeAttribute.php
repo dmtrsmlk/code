@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Small\Test\Setup\Patch\Data;
 
 use Magento\Eav\Setup\EavSetup;
